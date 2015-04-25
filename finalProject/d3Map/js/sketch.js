@@ -6,14 +6,15 @@ $(document).ready(function() {
 
 /* VARIABLES */
 	var width = 960,
-		height = 500;
+		height = 650;
 
 	var projection = d3.geo.mercator()
-		//I don't understand the diference between rotate and center
-		.center([0,5])
+		//center adjusts position by lat and long from center
+		.center([0,30])
 		//zoom
 		.scale(140)
-		.rotate([0,0]);
+		//rotate adjust curvature
+		.rotate([-11,0]);
 
 	//svg window settings
 	var svg = d3.select("body").append("svg")
