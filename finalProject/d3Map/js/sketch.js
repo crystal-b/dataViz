@@ -1,9 +1,10 @@
 //http://www.d3noob.org/2013/03/a-simple-d3js-map-explained.html
 
+//start JS when the page is done loading
 $(document).ready(function() {
 	console.log("the document is ready");
 
-	/* VARIABLES */
+/* VARIABLES */
 	var width = 960,
 		height = 500;
 
@@ -28,7 +29,7 @@ $(document).ready(function() {
 	var g = svg.append("g");
 
 
-	/* FUNCTIONS */
+/* FUNCTIONS */
 	//draw the map
 	//load the json world map coordinates file
 	d3.json("world-110m2.json", function(error, topology) {
@@ -49,5 +50,41 @@ $(document).ready(function() {
 	});
 	console.log("the map is done");
 
+	//zooming feature
+	//declare zoom as a d3 function
+	var zoom = d3.behavior.zoom()
+		//create event listeners for zooming/panning mouse actions
+		.on("zoom", function() {
+			//when zooming, perform this function on the "g" svg container
+			//first gather the correct formats for translate and scale
+			g.attr("transform","translate("+
+				d3.event.translate.join(",")+")scale("+d3.event.scale+")");
+			//and then apply those to the path elements that draw the country shapes
+			g.selectAll("path")
+				.attr("d", path.projection(projection));
+		});
+/* FUNCTION CALLS */
+	//call the zoom function
+	svg.call(zoom)
+	console.log("now you can also pan + zoom");
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
