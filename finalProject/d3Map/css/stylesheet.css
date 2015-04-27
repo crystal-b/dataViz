@@ -5,7 +5,7 @@ html, body {
 	margin: 0;
 }
 path {
-	stroke: white;
+	stroke: #000000;
 	stroke-width: .25px;
-	fill: gray;
+	fill: #EDEDED;
 }
