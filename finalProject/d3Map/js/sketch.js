@@ -47,7 +47,22 @@ $(document).ready(function() {
 				.append("path")
 				//make the elements dynamic to loop through the data
 				.attr("d", path)
-
+/*SCATTER PLOTS */
+		d3.csv("csv/afroAsiatic.csv", function(error, data) {
+			g.selectAll("circle")
+				.data(data)
+				.enter()
+				.append("circle")
+				.attr("cx", function(d) {
+					return projection([d.longitude, d.latitude])[0];
+				})
+				.attr("cy", function(d) {
+					return projection([d.longitude, d.latitude])[1];
+				})
+				.attr("r",.5)
+				.style("fill", "red");
+		})
+		console.log("added afro-asiatic family scatter plot");
 	});
 	console.log("the map is done");
 
