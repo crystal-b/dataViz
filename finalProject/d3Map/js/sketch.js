@@ -5,6 +5,7 @@ $(document).ready(function() {
 	console.log("the document is ready");
 
 /* VARIABLES */
+	//svg canvas size
 	var width = 960,
 		height = 650;
 
@@ -48,7 +49,7 @@ $(document).ready(function() {
 				//make the elements dynamic to loop through the data
 				.attr("d", path)
 /*SCATTER PLOTS */
-		//afro-asiatic
+	//afro-asiatic
 		d3.csv("csv/afroAsiatic.csv", function(error, data) {
 			g.selectAll("circle")
 				.data(data)
@@ -64,7 +65,7 @@ $(document).ready(function() {
 				.style("fill", "red");
 		})
 		console.log("added afro-asiatic family scatter plot");
-		//australian
+	//australian
 		d3.csv("csv/australian.csv", function(error, data) {
 			g.selectAll("circle")
 				.data(data)
@@ -80,6 +81,70 @@ $(document).ready(function() {
 				.style("fill", "blue");
 		})
 		console.log("added australian family scatter plot");
+	//austronesian 
+		d3.csv("csv/austronesian.csv", function(error, data) {
+			g.selectAll("circle")
+				.data(data)
+				.enter()
+				.append("circle")
+				.attr("cx", function(d) {
+					return projection([d.longitude, d.latitude])[0];
+				})
+				.attr("cy", function(d) {
+					return projection([d.longitude, d.latitude])[1];
+				})
+				.attr("r",.5)
+				.style("fill", "orange");
+		})
+		console.log("added austronesian family scatter plot");
+	//indo-european
+		d3.csv("csv/indoEuropean.csv", function(error, data) {
+			g.selectAll("circle")
+				.data(data)
+				.enter()
+				.append("circle")
+				.attr("cx", function(d) {
+					return projection([d.longitude, d.latitude])[0];
+				})
+				.attr("cy", function(d) {
+					return projection([d.longitude, d.latitude])[1];
+				})
+				.attr("r",.5)
+				.style("fill", "#FF69B4");
+		})
+		console.log("added indo-european family scatter plot");
+	//niger-congo
+		d3.csv("csv/nigerCongo.csv", function(error, data) {
+			g.selectAll("circle")
+				.data(data)
+				.enter()
+				.append("circle")
+				.attr("cx", function(d) {
+					return projection([d.longitude, d.latitude])[0];
+				})
+				.attr("cy", function(d) {
+					return projection([d.longitude, d.latitude])[1];
+				})
+				.attr("r",.5)
+				.style("fill", "purple");
+		})
+		console.log("added niger-congo family scatter plot");	
+		//sino-tibetan
+		d3.csv("csv/sinoTibetan.csv", function(error, data) {
+			g.selectAll("circle")
+				.data(data)
+				.enter()
+				.append("circle")
+				.attr("cx", function(d) {
+					return projection([d.longitude, d.latitude])[0];
+				})
+				.attr("cy", function(d) {
+					return projection([d.longitude, d.latitude])[1];
+				})
+				.attr("r",.5)
+				.style("fill", "green");
+		})
+		console.log("added sino-tibetan family scatter plot");
 
 	});
 	console.log("the map is done");
