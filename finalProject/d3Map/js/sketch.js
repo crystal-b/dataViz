@@ -30,6 +30,14 @@ $(document).ready(function() {
 	//the svg
 	var g = svg.append("g");
 
+	//csv files
+	var csv1 = null;
+	var csv2 = null;
+	var csv3 = null;
+	var csv4 = null;
+	var csv5 = null;
+	var csv6 = null;
+
 
 /* FUNCTIONS */
 	//draw the map
@@ -72,23 +80,63 @@ $(document).ready(function() {
 	//afro-asiatic
 		d3.csv("csv/afroAsiatic.csv", function(error, data) {
 			console.log("loading csv 1");
+			csv1 = data;
+			finishLoading();
+		});
 	//australian
-			d3.csv("csv/australian.csv", function(error, data) {
-				console.log("loading csv 2");
+		d3.csv("csv/australian.csv", function(error, data) {
+			console.log("loading csv 2");
+			csv2 = data;
+			finishLoading();
+		});
 	//austronesian 
-				d3.csv("csv/austronesian.csv", function(error, data) {
-					console.log("loading csv 3");
+		d3.csv("csv/austronesian.csv", function(error, data) {
+			console.log("loading csv 3");
+			csv3 = data;
+			finishLoading();
+		});
 	//indo-european
-					d3.csv("csv/indoEuropean.csv", function(error, data) {
-						console.log("loading csv 4");
+		d3.csv("csv/indoEuropean.csv", function(error, data) {
+			console.log("loading csv 4");
+			csv4 = data;
+			finishLoading(csv4);
+		});
 	//niger-congo
-						d3.csv("csv/nigerCongo.csv", function(error, data) {
-							console.log("loading csv 5");
+		d3.csv("csv/nigerCongo.csv", function(error, data) {
+			console.log("loading csv 5");
+			csv5 = data;
+			finishLoading();
+		});
 	//sino-tibetan
-							d3.csv("csv/sinoTibetan.csv", function(error, data) {
-								console.log("loading csv 6");
+		d3.csv("csv/sinoTibetan.csv", function(error, data) {
+			console.log("loading csv 6");
+			csv6 = data;
+			finishLoading();
+		});
+	//draw map
+		function finishLoading() {
+			setTimeout(function() {
+				if(!csv1 || !csv2 || !csv3 || !csv4 || !csv5 || !csv6) return;
+				g.selectAll("circle")
+				.data(data)
+				.enter()
+				.append("circle")
+				.attr("cx", function(d) {
+					return projection([d.longitude, d.latitude])[0];
+				})
+				.attr("cy", function(d) {
+					return projection([d.longitude, d.latitude])[1];
+				})
+				.attr("r",.5)
+				.style("fill", "green");
+				console.log("drawing csv");
+			}, 0);
+		}	
+	});
+
+/*
 								g.selectAll("circle")
-									.data(data)
+									.data(csv6)
 									.enter()
 									.append("circle")
 									.attr("cx", function(d) {
@@ -178,6 +226,7 @@ $(document).ready(function() {
 		})
 		console.log("added afro-asiatic family scatter plot");
 	});
+*/
 	console.log("the map is done");
 
 	//zooming feature
@@ -193,6 +242,7 @@ $(document).ready(function() {
 			g.selectAll("path")
 				.attr("d", path.projection(projection));
 		});
+
 /* FUNCTION CALLS */
 	//call the zoom function
 	svg.call(zoom)
