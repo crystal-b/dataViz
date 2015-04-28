@@ -84,6 +84,11 @@ $(document).ready(function() {
 			csv1 = data;
 			color = "red";
 			finishLoading(csv1, color);
+			var selA = g.selectAll("circle.csv1").data(csv1);
+				selA.exit().remove();
+				console.log("removing selection A");
+				selA.enter().append("circle").classed("csv1", true);
+				console.log("adding a class to selection A");
 		});
 	//australian
 		d3.csv("csv/australian.csv", function(error, data) {
@@ -99,6 +104,8 @@ $(document).ready(function() {
 			color = "orange";
 			finishLoading(csv3, color);
 		});
+/* I'm only going to plot 3 families for now and move on
+
 	//indo-european
 		d3.csv("csv/indoEuropean.csv", function(error, data) {
 			console.log("loading csv 4");
@@ -120,11 +127,14 @@ $(document).ready(function() {
 			color = "green";
 			finishLoading(csv6, color);
 		});
+*/
 
 	//create circle classes for CSS
 		var selA = g.selectAll("circle.csv1").data(csv1);
 			selA.exit().remove();
+			console.log("removing selection A");
 			selA.enter().append("circle").classed("csv1", true);
+			console.log("adding a class to selection A");
 		var selB = g.selectAll("circle.csv2").data(csv2);
 			selB.exit().remove();
 			selB.enter().append("circle").classed("csv2", true);
@@ -140,11 +150,11 @@ $(document).ready(function() {
 		var selF = g.selectAll("circle.csv6").data(csv6);
 			selF.exit().remove();
 			selF.enter().append("circle").classed("csv6", true);
-			
+
 	//draw map
 		function finishLoading(data, color) {
 			setTimeout(function() {
-				if(!csv1 || !csv2 || !csv3 || !csv4 || !csv5 || !csv6) return;
+				if(!csv1 || !csv2 || !csv3/* || !csv4 || !csv5 || !csv6 */) return;
 				g.selectAll("circle")
 				.data(data)
 				.enter()
@@ -162,100 +172,6 @@ $(document).ready(function() {
 		}
 
 	});
-
-/*
-								g.selectAll("circle")
-									.data(csv6)
-									.enter()
-									.append("circle")
-									.attr("cx", function(d) {
-										return projection([d.longitude, d.latitude])[0];
-									})
-									.attr("cy", function(d) {
-										return projection([d.longitude, d.latitude])[1];
-									})
-									.attr("r",.5)
-									.style("fill", "green");
-									console.log("drawing csv 6");
-							})
-							console.log("added sino-tibetan family scatter plot");							
-							g.selectAll("circle")
-								.data(data)
-								.enter()
-								.append("circle")
-								.attr("cx", function(d) {
-									return projection([d.longitude, d.latitude])[0];
-								})
-								.attr("cy", function(d) {
-									return projection([d.longitude, d.latitude])[1];
-								})
-								.attr("r",.5)
-								.style("fill", "purple");	
-								console.log("drawing csv 5");							
-						})
-						console.log("added niger-congo family scatter plot");						
-						g.selectAll("circle")
-							.data(data)
-							.enter()
-							.append("circle")
-							.attr("cx", function(d) {
-								return projection([d.longitude, d.latitude])[0];
-							})
-							.attr("cy", function(d) {
-								return projection([d.longitude, d.latitude])[1];
-							})
-							.attr("r",.5)
-							.style("fill", "#FF69B4");
-							console.log("drawing csv 4");
-					})
-					console.log("added indo-european family scatter plot");											
-					g.selectAll("circle")
-						.data(data)
-						.enter()
-						.append("circle")
-						.attr("cx", function(d) {
-							return projection([d.longitude, d.latitude])[0];
-						})
-						.attr("cy", function(d) {
-							return projection([d.longitude, d.latitude])[1];
-						})
-						.attr("r",.5)
-						.style("fill", "orange");
-						console.log("drawing csv 3");							
-				})
-				console.log("added austronesian family scatter plot");				
-				g.selectAll("circle")
-					.data(data)
-					.enter()
-					.append("circle")
-					.attr("cx", function(d) {
-						return projection([d.longitude, d.latitude])[0];
-					})
-					.attr("cy", function(d) {
-						return projection([d.longitude, d.latitude])[1];
-					})
-					.attr("r",.5)
-					.style("fill", "blue");	
-					console.log("drawing csv 2");				
-			})
-			console.log("added australian family scatter plot");			
-			g.selectAll("circle")
-				.data(data)
-				.enter()
-				.append("circle")
-				.attr("cx", function(d) {
-					return projection([d.longitude, d.latitude])[0];
-				})
-				.attr("cy", function(d) {
-					return projection([d.longitude, d.latitude])[1];
-				})
-				.attr("r",.5)
-				.style("fill", "red");
-				console.log("drawing csv 1");
-		})
-		console.log("added afro-asiatic family scatter plot");
-	});
-*/
 	console.log("the map is done");
 
 	//zooming feature
