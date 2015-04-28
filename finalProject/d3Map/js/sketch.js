@@ -37,6 +37,7 @@ $(document).ready(function() {
 	var csv4 = null;
 	var csv5 = null;
 	var csv6 = null;
+	var color = null;
 
 
 /* FUNCTIONS */
@@ -81,40 +82,46 @@ $(document).ready(function() {
 		d3.csv("csv/afroAsiatic.csv", function(error, data) {
 			console.log("loading csv 1");
 			csv1 = data;
-			finishLoading(csv1);
+			color = "red";
+			finishLoading(csv1, color);
 		});
 	//australian
 		d3.csv("csv/australian.csv", function(error, data) {
 			console.log("loading csv 2");
 			csv2 = data;
-			finishLoading(csv2);
+			color = "blue";
+			finishLoading(csv2, color);
 		});
 	//austronesian 
 		d3.csv("csv/austronesian.csv", function(error, data) {
 			console.log("loading csv 3");
 			csv3 = data;
-			finishLoading(csv3);
+			color = "orange";
+			finishLoading(csv3, color);
 		});
 	//indo-european
 		d3.csv("csv/indoEuropean.csv", function(error, data) {
 			console.log("loading csv 4");
 			csv4 = data;
-			finishLoading(csv4);
+			color = "#FF69B4";
+			finishLoading(csv4, color);
 		});
 	//niger-congo
 		d3.csv("csv/nigerCongo.csv", function(error, data) {
 			console.log("loading csv 5");
 			csv5 = data;
-			finishLoading(csv5);
+			color = "purple";
+			finishLoading(csv5, color);
 		});
 	//sino-tibetan
 		d3.csv("csv/sinoTibetan.csv", function(error, data) {
 			console.log("loading csv 6");
 			csv6 = data;
-			finishLoading(csv6);
+			color = "green";
+			finishLoading(csv6, color);
 		});
 	//draw map
-		function finishLoading(data) {
+		function finishLoading(data, color) {
 			setTimeout(function() {
 				if(!csv1 || !csv2 || !csv3 || !csv4 || !csv5 || !csv6) return;
 				g.selectAll("circle")
@@ -128,7 +135,7 @@ $(document).ready(function() {
 					return projection([d.longitude, d.latitude])[1];
 				})
 				.attr("r",.5)
-				.style("fill", "green");
+				.style("fill", color);
 				console.log("drawing csv");
 			}, 0);
 		}	
