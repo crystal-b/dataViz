@@ -96,6 +96,11 @@ $(document).ready(function() {
 			csv2 = data;
 			color = "blue";
 			finishLoading(csv2, color);
+			var selB = g.selectAll("circle.csv2").data(csv2);
+				selB.exit().remove();
+				console.log("removing selection B");
+				selB.enter().append("circle").classed("csv2", true);
+				console.log("adding a class to selection B");
 		});
 	//austronesian 
 		d3.csv("csv/austronesian.csv", function(error, data) {
@@ -103,6 +108,11 @@ $(document).ready(function() {
 			csv3 = data;
 			color = "orange";
 			finishLoading(csv3, color);
+			var selC = g.selectAll("circle.csv3").data(csv3);
+				selC.exit().remove();
+				console.log("removing selection C");
+				selC.enter().append("circle").classed("csv3", true);
+				console.log("adding a class to selection C");
 		});
 /* I'm only going to plot 3 families for now and move on
 
@@ -127,9 +137,9 @@ $(document).ready(function() {
 			color = "green";
 			finishLoading(csv6, color);
 		});
-*/
 
 	//create circle classes for CSS
+	// SEE: http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_removing_values_and_elements
 		var selA = g.selectAll("circle.csv1").data(csv1);
 			selA.exit().remove();
 			console.log("removing selection A");
@@ -150,6 +160,7 @@ $(document).ready(function() {
 		var selF = g.selectAll("circle.csv6").data(csv6);
 			selF.exit().remove();
 			selF.enter().append("circle").classed("csv6", true);
+*/
 
 	//draw map
 		function finishLoading(data, color) {
