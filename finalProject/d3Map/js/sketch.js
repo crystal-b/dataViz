@@ -81,19 +81,19 @@ $(document).ready(function() {
 		d3.csv("csv/afroAsiatic.csv", function(error, data) {
 			console.log("loading csv 1");
 			csv1 = data;
-			finishLoading();
+			finishLoading(csv1);
 		});
 	//australian
 		d3.csv("csv/australian.csv", function(error, data) {
 			console.log("loading csv 2");
 			csv2 = data;
-			finishLoading();
+			finishLoading(csv2);
 		});
 	//austronesian 
 		d3.csv("csv/austronesian.csv", function(error, data) {
 			console.log("loading csv 3");
 			csv3 = data;
-			finishLoading();
+			finishLoading(csv3);
 		});
 	//indo-european
 		d3.csv("csv/indoEuropean.csv", function(error, data) {
@@ -105,16 +105,16 @@ $(document).ready(function() {
 		d3.csv("csv/nigerCongo.csv", function(error, data) {
 			console.log("loading csv 5");
 			csv5 = data;
-			finishLoading();
+			finishLoading(csv5);
 		});
 	//sino-tibetan
 		d3.csv("csv/sinoTibetan.csv", function(error, data) {
 			console.log("loading csv 6");
 			csv6 = data;
-			finishLoading();
+			finishLoading(csv6);
 		});
 	//draw map
-		function finishLoading() {
+		function finishLoading(data) {
 			setTimeout(function() {
 				if(!csv1 || !csv2 || !csv3 || !csv4 || !csv5 || !csv6) return;
 				g.selectAll("circle")
