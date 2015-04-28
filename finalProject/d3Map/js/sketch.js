@@ -120,6 +120,27 @@ $(document).ready(function() {
 			color = "green";
 			finishLoading(csv6, color);
 		});
+
+	//create circle classes for CSS
+		var selA = g.selectAll("circle.csv1").data(csv1);
+			selA.exit().remove();
+			selA.enter().append("circle").classed("csv1", true);
+		var selB = g.selectAll("circle.csv2").data(csv2);
+			selB.exit().remove();
+			selB.enter().append("circle").classed("csv2", true);
+		var selC = g.selectAll("circle.csv3").data(csv3);
+			selC.exit().remove();
+			selC.enter().append("circle").classed("csv3", true);
+		var selD = g.selectAll("circle.csv4").data(csv4);
+			selD.exit().remove();
+			selD.enter().append("circle").classed("csv4", true);
+		var selE = g.selectAll("circle.csv5").data(csv5);
+			selE.exit().remove();
+			selE.enter().append("circle").classed("csv5", true);
+		var selF = g.selectAll("circle.csv6").data(csv6);
+			selF.exit().remove();
+			selF.enter().append("circle").classed("csv6", true);
+			
 	//draw map
 		function finishLoading(data, color) {
 			setTimeout(function() {
@@ -138,7 +159,8 @@ $(document).ready(function() {
 				.style("fill", color);
 				console.log("drawing csv");
 			}, 0);
-		}	
+		}
+
 	});
 
 /*
