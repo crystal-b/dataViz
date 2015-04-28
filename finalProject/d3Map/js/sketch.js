@@ -71,76 +71,22 @@ $(document).ready(function() {
 
 	//afro-asiatic
 		d3.csv("csv/afroAsiatic.csv", function(error, data) {
-			g.selectAll("circle")
-				.data(data)
-				.enter()
-				.append("circle")
-				.attr("cx", function(d) {
-					return projection([d.longitude, d.latitude])[0];
-				})
-				.attr("cy", function(d) {
-					return projection([d.longitude, d.latitude])[1];
-				})
-				.attr("r",.5)
-				.style("fill", "red");
+			console.log("loading csv 1");
 	//australian
 			d3.csv("csv/australian.csv", function(error, data) {
-				g.selectAll("circle")
-					.data(data)
-					.enter()
-					.append("circle")
-					.attr("cx", function(d) {
-						return projection([d.longitude, d.latitude])[0];
-					})
-					.attr("cy", function(d) {
-						return projection([d.longitude, d.latitude])[1];
-					})
-					.attr("r",.5)
-					.style("fill", "blue");
+				console.log("loading csv 2");
 	//austronesian 
 				d3.csv("csv/austronesian.csv", function(error, data) {
-					g.selectAll("circle")
-						.data(data)
-						.enter()
-						.append("circle")
-						.attr("cx", function(d) {
-							return projection([d.longitude, d.latitude])[0];
-						})
-						.attr("cy", function(d) {
-							return projection([d.longitude, d.latitude])[1];
-						})
-						.attr("r",.5)
-						.style("fill", "orange");
+					console.log("loading csv 3");
 	//indo-european
 					d3.csv("csv/indoEuropean.csv", function(error, data) {
-						g.selectAll("circle")
-							.data(data)
-							.enter()
-							.append("circle")
-							.attr("cx", function(d) {
-								return projection([d.longitude, d.latitude])[0];
-							})
-							.attr("cy", function(d) {
-								return projection([d.longitude, d.latitude])[1];
-							})
-							.attr("r",.5)
-							.style("fill", "#FF69B4");
+						console.log("loading csv 4");
 	//niger-congo
 						d3.csv("csv/nigerCongo.csv", function(error, data) {
-							g.selectAll("circle")
-								.data(data)
-								.enter()
-								.append("circle")
-								.attr("cx", function(d) {
-									return projection([d.longitude, d.latitude])[0];
-								})
-								.attr("cy", function(d) {
-									return projection([d.longitude, d.latitude])[1];
-								})
-								.attr("r",.5)
-								.style("fill", "purple");
-		//sino-tibetan
+							console.log("loading csv 5");
+	//sino-tibetan
 							d3.csv("csv/sinoTibetan.csv", function(error, data) {
+								console.log("loading csv 6");
 								g.selectAll("circle")
 									.data(data)
 									.enter()
@@ -153,16 +99,82 @@ $(document).ready(function() {
 									})
 									.attr("r",.5)
 									.style("fill", "green");
+									console.log("drawing csv 6");
 							})
-							console.log("added sino-tibetan family scatter plot");								
+							console.log("added sino-tibetan family scatter plot");							
+							g.selectAll("circle")
+								.data(data)
+								.enter()
+								.append("circle")
+								.attr("cx", function(d) {
+									return projection([d.longitude, d.latitude])[0];
+								})
+								.attr("cy", function(d) {
+									return projection([d.longitude, d.latitude])[1];
+								})
+								.attr("r",.5)
+								.style("fill", "purple");	
+								console.log("drawing csv 5");							
 						})
-						console.log("added niger-congo family scatter plot");							
+						console.log("added niger-congo family scatter plot");						
+						g.selectAll("circle")
+							.data(data)
+							.enter()
+							.append("circle")
+							.attr("cx", function(d) {
+								return projection([d.longitude, d.latitude])[0];
+							})
+							.attr("cy", function(d) {
+								return projection([d.longitude, d.latitude])[1];
+							})
+							.attr("r",.5)
+							.style("fill", "#FF69B4");
+							console.log("drawing csv 4");
 					})
-					console.log("added indo-european family scatter plot");						
+					console.log("added indo-european family scatter plot");											
+					g.selectAll("circle")
+						.data(data)
+						.enter()
+						.append("circle")
+						.attr("cx", function(d) {
+							return projection([d.longitude, d.latitude])[0];
+						})
+						.attr("cy", function(d) {
+							return projection([d.longitude, d.latitude])[1];
+						})
+						.attr("r",.5)
+						.style("fill", "orange");
+						console.log("drawing csv 3");							
 				})
-				console.log("added austronesian family scatter plot");					
+				console.log("added austronesian family scatter plot");				
+				g.selectAll("circle")
+					.data(data)
+					.enter()
+					.append("circle")
+					.attr("cx", function(d) {
+						return projection([d.longitude, d.latitude])[0];
+					})
+					.attr("cy", function(d) {
+						return projection([d.longitude, d.latitude])[1];
+					})
+					.attr("r",.5)
+					.style("fill", "blue");	
+					console.log("drawing csv 2");				
 			})
-			console.log("added australian family scatter plot");
+			console.log("added australian family scatter plot");			
+			g.selectAll("circle")
+				.data(data)
+				.enter()
+				.append("circle")
+				.attr("cx", function(d) {
+					return projection([d.longitude, d.latitude])[0];
+				})
+				.attr("cy", function(d) {
+					return projection([d.longitude, d.latitude])[1];
+				})
+				.attr("r",.5)
+				.style("fill", "red");
+				console.log("drawing csv 1");
 		})
 		console.log("added afro-asiatic family scatter plot");
 	});
