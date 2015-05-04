@@ -30,15 +30,6 @@ $(document).ready(function() {
 	//the svg
 	var g = svg.append("g");
 
-	//csv files
-	var csv1 = null;
-	var csv2 = null;
-	var csv3 = null;
-	var csv4 = null;
-	var csv5 = null;
-	var csv6 = null;
-	var color = null;
-
 
 /* FUNCTIONS */
 	//draw the map
@@ -57,133 +48,94 @@ $(document).ready(function() {
 				.append("path")
 				//make the elements dynamic to loop through the data
 				.attr("d", path)
+		});
+	console.log("the map is done");
+
 /*SCATTER PLOTS */
-	//all
-	/*
-			d3.csv("csv/language.csv", function(error, data) {
+		var plot1, plot2, plot3, plot4, plot5, plot6, remaining = 6;
+		//afro-asiatic
+		d3.csv("csv/afroAsiatic.csv", function(error, data) {
+			plot1 = data;
+			logData();
+			if (!--remaining) {
+				g.selectAll("circle")
+				.data(plot1)
+				.enter()
+				.append("circle")
+				.attr("cx", function(d) {
+					return projection([d.longitude, d.latitude])[0];
+				})
+				.attr("cy", function(d) {
+					return projection([d.longitude, d.latitude])[1];
+				})
+				.attr("r",.5)
+				.style("fill", "red");
+			}
+		});
+		console.log("added afro-asiatic family scatter plot");
+	/*	
+		//australian
+		d3.csv("csv/australian.csv", function(error, data) {
+			plot2 = data;
+			if (!--remaining) drawPlots();
+				console.log("hey2");
+				return data;
+		})
+		console.log("added australian family scatter plot");
+		//austronesian 
+		d3.csv("csv/austronesian.csv", function(error, data) {
+			plot3 = data;
+			if (!--remaining) drawPlots();
+				console.log("hey3");
+				return data;
+		})
+		console.log("added austronesian family scatter plot");
+		//indo-european
+		d3.csv("csv/indoEuropean.csv", function(error, data) {
+			plot4 = data;
+			if (!--remaining) drawPlots();
+				console.log("hey4");
+				return data;
+		})
+		console.log("added indo-european family scatter plot");
+		//niger-congo
+		d3.csv("csv/nigerCongo.csv", function(error, data) {
+			plot5 = data;
+			if (!--remaining) drawPlots();
+				console.log("hey5");
+				return data;
+		})
+		console.log("added niger-congo family scatter plot");	
+		//sino-tibetan
+		d3.csv("csv/sinoTibetan.csv", function(error, data) {
+			plot6 = data;
+			if (!--remaining) drawPlots();
+				console.log("hey6");
+				return data;
+		})
+		console.log("added sino-tibetan family scatter plot");	
+
+*/
+
+/* FUNCTIONS */
+	function logData() {
+		console.log(plot1);
+	};
+	function drawPlots() {
 			g.selectAll("circle")
 				.data(data)
 				.enter()
 				.append("circle")
-				.attr("cx", function(d) {
-					return projection([d.longitude, d.latitude])[0];
+				.attr("cx", function(plot1) {
+					return projection([plot1.longitude, plot1.latitude])[0];
 				})
-				.attr("cy", function(d) {
-					return projection([d.longitude, d.latitude])[1];
-				})
-				.attr("r",.5)
-				.style("fill", "#32CD32");
-		})
-		console.log("added scatter plot for all languages");
-	});
-	*/
-
-	//afro-asiatic
-		d3.csv("csv/afroAsiatic.csv", function(error, data) {
-			console.log("loading csv 1");
-			csv1 = data;
-			color = "red";
-			finishLoading(csv1, color);
-			var selA = g.selectAll("circle.csv1").data(csv1);
-				selA.exit().remove();
-				console.log("removing selection A");
-				selA.enter().append("circle").classed("csv1", true);
-				console.log("adding a class to selection A");
-		});
-	//australian
-		d3.csv("csv/australian.csv", function(error, data) {
-			console.log("loading csv 2");
-			csv2 = data;
-			color = "blue";
-			finishLoading(csv2, color);
-			var selB = g.selectAll("circle.csv2").data(csv2);
-				selB.exit().remove();
-				console.log("removing selection B");
-				selB.enter().append("circle").classed("csv2", true);
-				console.log("adding a class to selection B");
-		});
-	//austronesian 
-		d3.csv("csv/austronesian.csv", function(error, data) {
-			console.log("loading csv 3");
-			csv3 = data;
-			color = "orange";
-			finishLoading(csv3, color);
-			var selC = g.selectAll("circle.csv3").data(csv3);
-				selC.exit().remove();
-				console.log("removing selection C");
-				selC.enter().append("circle").classed("csv3", true);
-				console.log("adding a class to selection C");
-		});
-/* I'm only going to plot 3 families for now and move on
-
-	//indo-european
-		d3.csv("csv/indoEuropean.csv", function(error, data) {
-			console.log("loading csv 4");
-			csv4 = data;
-			color = "#FF69B4";
-			finishLoading(csv4, color);
-		});
-	//niger-congo
-		d3.csv("csv/nigerCongo.csv", function(error, data) {
-			console.log("loading csv 5");
-			csv5 = data;
-			color = "purple";
-			finishLoading(csv5, color);
-		});
-	//sino-tibetan
-		d3.csv("csv/sinoTibetan.csv", function(error, data) {
-			console.log("loading csv 6");
-			csv6 = data;
-			color = "green";
-			finishLoading(csv6, color);
-		});
-
-	//create circle classes for CSS
-	// SEE: http://chimera.labs.oreilly.com/books/1230000000345/ch09.html#_removing_values_and_elements
-		var selA = g.selectAll("circle.csv1").data(csv1);
-			selA.exit().remove();
-			console.log("removing selection A");
-			selA.enter().append("circle").classed("csv1", true);
-			console.log("adding a class to selection A");
-		var selB = g.selectAll("circle.csv2").data(csv2);
-			selB.exit().remove();
-			selB.enter().append("circle").classed("csv2", true);
-		var selC = g.selectAll("circle.csv3").data(csv3);
-			selC.exit().remove();
-			selC.enter().append("circle").classed("csv3", true);
-		var selD = g.selectAll("circle.csv4").data(csv4);
-			selD.exit().remove();
-			selD.enter().append("circle").classed("csv4", true);
-		var selE = g.selectAll("circle.csv5").data(csv5);
-			selE.exit().remove();
-			selE.enter().append("circle").classed("csv5", true);
-		var selF = g.selectAll("circle.csv6").data(csv6);
-			selF.exit().remove();
-			selF.enter().append("circle").classed("csv6", true);
-*/
-
-	//draw map
-		function finishLoading(data, color) {
-			setTimeout(function() {
-				if(!csv1 || !csv2 || !csv3/* || !csv4 || !csv5 || !csv6 */) return;
-				g.selectAll("circle")
-				.data(data)
-				.enter()
-				.append("circle")
-				.attr("cx", function(d) {
-					return projection([d.longitude, d.latitude])[0];
-				})
-				.attr("cy", function(d) {
-					return projection([d.longitude, d.latitude])[1];
+				.attr("cy", function(plot1) {
+					return projection([plot1.longitude, plot1.latitude])[1];
 				})
 				.attr("r",.5)
-				.style("fill", color);
-				console.log("drawing csv");
-			}, 0);
-		}
+				.style("fill", "red");
+	};
 
-	});
-	console.log("the map is done");
 
 	//zooming feature
 	//declare zoom as a d3 function
@@ -198,29 +150,9 @@ $(document).ready(function() {
 			g.selectAll("path")
 				.attr("d", path.projection(projection));
 		});
-
 /* FUNCTION CALLS */
 	//call the zoom function
 	svg.call(zoom)
 	console.log("now you can also pan + zoom");
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
