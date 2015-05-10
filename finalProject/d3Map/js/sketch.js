@@ -140,9 +140,8 @@ $(document).ready(function() {
 				//d3.select("#afro")
 				//afro.active=active;
 				//hide or show elements
-				d3.select("#afro")
-					.style("opacity", newOpacity);
-					afro.active = active;
+				selA.style("opacity", newOpacity);
+					selA.active = active;
 				// selA.active = active;
 				// console.log(selA.active);
 				console.log("button clicked");
