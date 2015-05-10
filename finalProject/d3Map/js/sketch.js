@@ -96,26 +96,45 @@ $(document).ready(function() {
 	  setTimeout(function() {
 	    if(!afroAsiaticData || !australianData || !austronesianData || !indoEuropeanData || !nigerCongoData || !sinoTibetanData) return;
 	    	renderPoints();
+	    	d3.select(".all")
+	    		.on("click", function() {
+	    			var selA = g.selectAll("circle.afroAsiaticData").data(afroAsiaticData);
+					selA.exit().remove();
+					selA
+					.enter()
+					.append("circle")	
+					.attr("cx", function(d) {
+						return projection([d.longitude, d.latitude])[0];
+					})
+					.attr("cy", function(d) {
+						return projection([d.longitude, d.latitude])[1];
+					})
+					.attr("r",2)
+					.style("fill", "red")
+					.classed("afroAsiaticData", true);
+					console.log("button clicked");
+				});
+
 	  }, 0);
 	}
 
 //draw scatter plots
 	function renderPoints(){  
 		
-		var selA = g.selectAll("circle.afroAsiaticData").data(afroAsiaticData);
-		selA.exit().remove();
-		selA
-		.enter()
-		.append("circle")	
-		.attr("cx", function(d) {
-			return projection([d.longitude, d.latitude])[0];
-		})
-		.attr("cy", function(d) {
-			return projection([d.longitude, d.latitude])[1];
-		})
-		.attr("r",2)
-		.style("fill", "red")
-		.classed("afroAsiaticData", true);
+		// var selA = g.selectAll("circle.afroAsiaticData").data(afroAsiaticData);
+		// selA.exit().remove();
+		// selA
+		// .enter()
+		// .append("circle")	
+		// .attr("cx", function(d) {
+		// 	return projection([d.longitude, d.latitude])[0];
+		// })
+		// .attr("cy", function(d) {
+		// 	return projection([d.longitude, d.latitude])[1];
+		// })
+		// .attr("r",2)
+		// .style("fill", "red")
+		// .classed("afroAsiaticData", true);
 
 		var selB = g.selectAll("circle.australianData").data(australianData);
 		selB.exit().remove();
