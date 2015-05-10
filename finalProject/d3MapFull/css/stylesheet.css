@@ -1,0 +1,90 @@
+html, body {
+	font-size: 100%;
+	background-color: #FFFFFF;
+	padding: 0;
+	margin: 0;
+}
+path {
+	stroke: #000000;
+	stroke-width: .25px;
+	fill: #EDEDED;
+}
+.interface {
+	        	float: right;
+	        	margin-right: 50px;
+}
+#menuWrapper {
+	display: inline-block;
+	width: 300px;
+}
+#menuLeft {
+	width: 50px;
+	height: 0;
+	float: left;
+	margin-top: 2em;
+	border-top: 15px solid transparent;
+	border-right: 30px solid red;
+	border-bottom: 15px solid transparent;
+}
+#menu {
+	width: 100px;
+	float: left;
+	margin: 0 1em 0 1em;
+}
+#menuRight {
+	width: 50px;
+	height: 0;
+	float: left;
+	margin-top: 2em;
+	border-top: 15px solid transparent;
+	border-left: 30px solid red;
+	border-bottom: 15px solid transparent;
+}
+.languageArea {
+	font-size: 2em;
+}
+.btn {
+	  background: #3498db;
+	  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+	  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+	  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+	  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+	  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+	  -webkit-border-radius: 28;
+	  -moz-border-radius: 28;
+	  border-radius: 28px;
+	  font-family: Arial;
+	  color: #ffffff;
+	  font-size: 1em;
+	  padding: 1px 20px 1px 20px;
+	  margin-bottom: 5px;
+	  text-decoration: none;
+	  text-align: center;
+}
+.btn:hover {
+	  background: #3cb0fd;
+	  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+	  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+	  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+	  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+	  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+	  text-decoration: none;
+	}
+.active {
+	background: #000000;
+	  background-image: -webkit-linear-gradient(top, #000000, #3498db);
+	  background-image: -moz-linear-gradient(top, #000000, #3498db);
+	  background-image: -ms-linear-gradient(top, #000000, #3498db);
+	  background-image: -o-linear-gradient(top, #000000, #3498db);
+	  background-image: linear-gradient(to bottom, #000000, #3498db);
+	  text-decoration: none;
+
+}
+
+/*svg #afro {
+	fill: red;
+}
+
+svg #afroOff {
+	fill: none;
+}*/
