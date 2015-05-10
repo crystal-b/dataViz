@@ -71,18 +71,69 @@ var langAreas = [{"category":"Consonant Inventories", "description":"X"},
 {"category":"Absence of Common Consonants", "description":"X"},
 {"category":"Presence of Uncommon Consonants", "description":"X"}]
 
+var allData = null;
 var langAreaTarget = $("#menu");
-	$("#menuLeft").click(function() {
-		langAreaTarget.empty();
-		langAreaTarget.html(langAreas[13].category);
-		var text = (langAreas[13].category);
-	})
-
-//..........................     Data     ...............................	
-
+$("#cat14").click(function() {
 //load the csv file for all language families
 	var allFamilies
 
+	d3.csv("csv/language.csv", function(err, data) {
+		if(err) return console.warn(err);
+		allData = data;
+		finishLoad();
+	});
+})
+
+		// langAreaTarget.empty();
+		// langAreaTarget.html(langAreas[13].category);
+		// var text = (langAreas[13].category);
+	//});
+
+
+
+
+
+
+
+//..........................     Data     ...............................	
+//FOR ALL LANGUAGES
+	function finishLoad() {
+	  	setTimeout(function() {
+		    if(!allData) return;
+		    	renderAll();
+  		}, 0);
+	}
+
+	function renderAll(){  
+		
+		var selAll = g.selectAll("circle.allData").data(allData);
+		selAll.exit().remove();
+		selAll
+		.enter()
+		.append("circle")	
+		.attr("cx", function(d) {
+			return projection([d.longitude, d.latitude])[0];
+		})
+		.attr("cy", function(d) {
+			return projection([d.longitude, d.latitude])[1];
+		})
+		.attr("r",2)
+		//.attr("id", "afro")
+		.style("fill", "black")
+		.classed("allData", true);
+		d3.select("#all")
+    		.on("click", function() {
+    			//determine if current svg is visible
+    			var active = selAll.active ? false: true,
+    				newOpacity = active? 0 : 1;
+				//hide or show elements
+				selAll.style("opacity", newOpacity);
+				selAll.active = active;
+				console.log("button clicked");
+			});
+	}
+
+//FOR THE 6 MOST POPULAR LANGUAGE FAMILIES
 //load the csv files for the 6 most popular language families
 	var afroAsiaticData = null;
 	var australianData = null;
@@ -149,7 +200,7 @@ var langAreaTarget = $("#menu");
 		//.attr("id", "afro")
 		.style("fill", "red")
 		.classed("afroAsiaticData", true);
-		d3.select("#all")
+		d3.select("#value1")
     		.on("click", function() {
     			//determine if current svg is visible
     			var active = selA.active ? false: true,
