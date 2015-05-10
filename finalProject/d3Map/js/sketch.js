@@ -116,7 +116,7 @@ $(document).ready(function() {
 			return projection([d.longitude, d.latitude])[1];
 		})
 		.attr("r",2)
-		.attr("id", "afro")
+		//.attr("id", "afro")
 		.style("fill", "red")
 		.classed("afroAsiaticData", true);
 		d3.select(".all")
@@ -124,37 +124,11 @@ $(document).ready(function() {
     			//determine if current svg is visible
     			var active = selA.active ? false: true,
     				newOpacity = active? 0 : 1;
-    			/*
-    				newOpacity = active ? 0: 1;
-    			//add a class to toggle
-				selA.attr("id", "afro")
-				//set visibility options
-				d3.select("#afro")
-					.style("opacity", newOpacity);
-				//update whether or not the element is active
-				afro.active = active;
-				console.log(afro.active);
-				console.log(newOpacity);
-				*/
-				//console.log(.afro.style);
-				//d3.select("#afro")
-				//afro.active=active;
 				//hide or show elements
 				selA.style("opacity", newOpacity);
-					selA.active = active;
-				// selA.active = active;
-				// console.log(selA.active);
+				selA.active = active;
 				console.log("button clicked");
-
 			});
-							if (selA.active = false) {
-					selA.attr("id", "afroOff");
-					//console.log(selA.fill);
-				}
-				// else if (selA.active = false) {
-				// 	selA.style("fill", "none");
-				// 	console.log(selA.fill);
-				// }
 
 		var selB = g.selectAll("circle.australianData").data(australianData);
 		selB.exit().remove();
