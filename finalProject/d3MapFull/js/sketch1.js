@@ -42,6 +42,14 @@ $(document).ready(function() {
 	});
 	console.log("the map is done");
 
+	//Value Buttons Colors
+	
+	$(".btn").click(function() {
+		console.log("click");
+		$(this).toggleClass("active")
+	});
+	
+
 
 
 
@@ -111,7 +119,7 @@ function renderCat1(){
 		return projection([d.longitude, d.latitude])[1];
 	})
 	.attr("r",2)
-	.style("fill", "red")
+	.style("fill", "#E31ECB")
 	.classed("cat1Data1", true);
 	d3.select("#btn1")
 		.on("click", function() {
@@ -137,7 +145,7 @@ function renderCat1(){
 		return projection([d.longitude, d.latitude])[1];
 	})
 	.attr("r",2)
-	.style("fill", "orange")
+	.style("fill", "#A754C6")
 	.classed("cat1Data2", true);
 	d3.select("#btn2")
 		.on("click", function() {
@@ -163,7 +171,7 @@ function renderCat1(){
 		return projection([d.longitude, d.latitude])[1];
 	})
 	.attr("r",2)
-	.style("fill", "green")
+	.style("fill", "#4720DD")
 	.classed("cat1Data3", true);
 	d3.select("#btn3")
 		.on("click", function() {
@@ -189,7 +197,7 @@ function renderCat1(){
 		return projection([d.longitude, d.latitude])[1];
 	})
 	.attr("r",2)
-	.style("fill", "blue")
+	.style("fill", "#78106B")
 	.classed("cat1Data4", true);
 	d3.select("#btn4")
 		.on("click", function() {
@@ -215,7 +223,7 @@ function renderCat1(){
 		return projection([d.longitude, d.latitude])[1];
 	})
 	.attr("r",2)
-	.style("fill", "purple")
+	.style("fill", "#856AE1")
 	.classed("cat1Data5", true);
 	d3.select("#btn5")
 		.on("click", function() {
